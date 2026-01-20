@@ -64,7 +64,7 @@ mvn spring-boot:run
 
 ## Run Locally (Frontend Demo)
 
-Open `frontend/index.html` in a browser (static demo).
+Start the backend, then open `frontend/index.html` in a browser (demo calls backend `/api/*`).
 
 ## REST API
 
@@ -87,9 +87,16 @@ Response:
   "amount": 1325,
   "rate": 55.54,
   "convertedAmount": 73594.50,
-  "fromCache": true
+  "fromCache": true,
+  "fetchedAt": "2026-01-21T01:14:27"
 }
 ```
+
+**GET** `/api/currencies`  
+Returns currency list (code, name, flag).
+
+**GET** `/api/latest?base=USD`  
+Returns latest rates for the given base currency.
 
 ## MySQL
 
