@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+</head>
+<body class="bg-slate-50 text-slate-900" style="font-family: 'Inter', sans-serif;">
+<main class="min-h-screen flex items-center justify-center px-4 py-12">
+    <section class="w-full max-w-2xl rounded-3xl bg-white shadow-2xl shadow-slate-200/70 p-8 md:p-12">
+        <div class="flex items-center gap-3">
+            <span class="text-2xl">💱</span>
+            <h1 class="text-2xl md:text-3xl font-semibold">Currency Converter</h1>
+        </div>
+        <p class="text-slate-500 mt-2">Instant conversions with smart caching</p>
+
+        <form id="convert-form" class="mt-8 grid gap-6" novalidate>
+            <div class="grid gap-2">
+                <label class="text-sm font-medium text-slate-600">Source Currency</label>
+                <div class="currency-dropdown currency-select" data-input="sourceCurrency">
+                    <button class="currency-trigger" type="button">
+                        <span class="flag">🏳️</span>
+                        <span class="code">---</span>
+                        <span class="name">Select currency</span>
+                        <span class="chev">▾</span>
+                    </button>
+                    <div class="dropdown-panel">
+                        <input class="input dropdown-search" placeholder="Search currency" type="text" autocomplete="off">
+                        <div class="dropdown-list">
+                            <button th:each="currency : ${currencyCodes}" type="button" class="dropdown-item"
+                                    th:attr="data-code=${currency.code},data-name=${currency.name},data-flag=${currency.flag}">
+                                <span class="flag" th:text="${currency.flag}"></span>
+                                <span class="code" th:text="${currency.code}"></span>
+                                <span class="name" th:text="| - ${currency.name}|"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="sourceCurrency" name="sourceCurrency" required>
+            </div>
+
+            <div class="grid gap-2">
+                <label class="text-sm font-medium text-slate-600">Target Currency</label>
+                <div class="currency-dropdown currency-select" data-input="targetCurrency">
+                    <button class="currency-trigger" type="button">
+                        <span class="flag">🏳️</span>
+                        <span class="code">---</span>
+                        <span class="name">Select currency</span>
+                        <span class="chev">▾</span>
+                    </button>
+                    <div class="dropdown-panel">
+                        <input class="input dropdown-search" placeholder="Search currency" type="text" autocomplete="off">
+                        <div class="dropdown-list">
+                            <button th:each="currency : ${currencyCodes}" type="button" class="dropdown-item"
+                                    th:attr="data-code=${currency.code},data-name=${currency.name},data-flag=${currency.flag}">
+                                <span class="flag" th:text="${currency.flag}"></span>
+                                <span class="code" th:text="${currency.code}"></span>
+                                <span class="name" th:text="| - ${currency.name}|"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="targetCurrency" name="targetCurrency" required>
+            </div>
+
+            <div class="grid gap-2">
+                <label for="amount" class="text-sm font-medium text-slate-600">Amount</label>
+                <input id="amount" name="amount" type="text" inputmode="numeric"
+                       placeholder="Enter whole number"
+                       class="w-full rounded-xl border border-slate-200 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                       required>
+            </div>
+
+            <button type="submit" id="convert-btn"
+                    class="mt-2 rounded-xl bg-indigo-600 text-white py-3 text-base font-semibold shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition">
+                Convert
+            </button>
+            <div id="loader" class="hidden text-sm text-slate-500">Converting...</div>
+        </form>
+
+        <div id="result" class="mt-6 rounded-2xl bg-indigo-50 px-5 py-4 hidden">
+            <p class="result-text font-semibold text-slate-900"></p>
+            <p class="result-note text-sm text-slate-500 mt-1"></p>
+        </div>
+
+        <div id="error" class="mt-6 rounded-2xl bg-red-50 px-5 py-4 text-red-600 text-sm font-medium hidden"></div>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,85 @@
+# Currency Converter Suite
+
+Production‑quality currency converter with a Spring Boot backend and two UI experiences.
+
+## Repository Layout
+
+- `backend/` — Spring Boot (Thymeleaf UI + REST API + DB caching)
+- `frontend/` — Standalone frontend demo (Vue 3, static)
+- `db.sql` — MySQL table script
+
+## Core Features
+
+- **Thymeleaf UI** with searchable currency dropdowns, flags, and names
+- **REST API** for conversion with strict validation
+- **DB caching** for rates (per source/target, 60‑minute TTL)
+- **Currency code list** loaded from local JSON at startup
+- **Unit tests** for caching, API fetch, and validation
+
+## Tech Stack (Java App)
+
+- Java 17, Spring Boot 3.x
+- Spring Web, Spring Data JPA, Thymeleaf
+- MySQL
+- JUnit5 + Mockito
+
+## Tech Stack (Frontend Demo)
+
+- Vue 3 (CDN)
+- Tailwind CSS (CDN)
+
+## External APIs Used
+
+- **CurrencyBeacon API**  
+  Base: `https://api.currencybeacon.com/v1`  
+  Endpoint: `GET /latest?api_key=XXX&base=AUD&symbols=INR`
+
+## Run Locally (Java App)
+
+```bash
+cd backend
+mvn spring-boot:run
+```
+
+App: `http://localhost:8080`
+
+## Run Locally (Frontend Demo)
+
+Open `frontend/index.html` in a browser (static demo).
+
+## REST API
+
+**POST** `/api/convert`
+
+Request:
+```json
+{
+  "sourceCurrency": "AUD",
+  "targetCurrency": "INR",
+  "amount": 1325
+}
+```
+
+Response:
+```json
+{
+  "sourceCurrency": "AUD",
+  "targetCurrency": "INR",
+  "amount": 1325,
+  "rate": 55.54,
+  "convertedAmount": 73594.50,
+  "fromCache": true
+}
+```
+
+## MySQL
+
+- Update connection settings in `backend/src/main/resources/application.properties`
+- Run the schema script in `db.sql` to create `conversion_rates`
+
+## Notes
+
+- Currency codes are loaded from `backend/src/main/resources/currency_codes.json`.
+- The UI formats input with thousand separators and displays:
+  `The <TARGET> amount for <SOURCE> <AMOUNT> is <TARGET> <RESULT>`
+

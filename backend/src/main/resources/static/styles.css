@@ -1,0 +1,149 @@
+:root {
+    --border: #e2e8f0;
+    --primary: #4f46e5;
+    --text: #0f172a;
+    --muted: #64748b;
+    --shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+}
+
+.currency-select {
+    min-width: 180px;
+    font-weight: 700;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    padding: 0;
+    border-radius: 14px;
+}
+
+.currency-dropdown {
+    position: relative;
+    width: 100%;
+}
+
+.currency-trigger {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.currency-trigger .flag {
+    font-size: 18px;
+}
+
+.currency-trigger .code {
+    font-weight: 800;
+    font-size: 16px;
+}
+
+.currency-trigger .name {
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 12px;
+    flex: 1;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.currency-trigger .chev {
+    color: var(--muted);
+}
+
+.currency-dropdown.open .currency-trigger {
+    border: 1px solid var(--primary);
+    box-shadow: none;
+}
+
+.dropdown-panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    max-width: 360px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 10px;
+    z-index: 60;
+    display: none;
+}
+
+.currency-dropdown.open .dropdown-panel {
+    display: block;
+}
+
+.input {
+    border: 1px solid transparent;
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 12px 12px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.input:focus {
+    border: 1px solid var(--primary);
+    box-shadow: none;
+}
+
+.dropdown-search {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.dropdown-list {
+    max-height: 240px;
+    overflow: auto;
+    display: grid;
+    gap: 6px;
+}
+
+.dropdown-item {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid transparent;
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.dropdown-item:hover {
+    border: 1px solid var(--primary);
+    background: #ffffff;
+}
+
+.dropdown-item .flag {
+    font-size: 18px;
+}
+
+.dropdown-item .code {
+    font-weight: 800;
+}
+
+.dropdown-item .name {
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.hidden {
+    display: none;
+}

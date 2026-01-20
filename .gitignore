@@ -1,0 +1,11 @@
+**/target/
+**/out/
+**/.idea/
+**/.vscode/
+**/*.iml
+**/.DS_Store
+**/.gradle/
+**/node_modules/
+**/.env
+**/*.log
+**/build/
