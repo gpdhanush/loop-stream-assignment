@@ -5,6 +5,7 @@ Production‑quality currency converter with a Spring Boot backend and two UI ex
 ## Repository
 
 - GitHub: https://github.com/gpdhanush/loop-stream-assignment.git
+- Frontend demo: https://gp.prasowlabs.in/cc/
 
 ## Repository Layout
 
