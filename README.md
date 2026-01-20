@@ -109,3 +109,15 @@ Returns latest rates for the given base currency.
 - The UI formats input with thousand separators and displays:
   `The <TARGET> amount for <SOURCE> <AMOUNT> is <TARGET> <RESULT>`
 
+## Backend (Java) Screenshots
+
+- Fresh API call (From CurrencyBeacon): `screenshots/fresh_api_call.png`
+![Fresh API call](screenshots/fresh_api_call.png)
+
+
+- Cached API call (From DB): `screenshots/cached_result.png`
+![Cached API call](screenshots/cached_result.png)
+
+
+
+
