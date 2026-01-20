@@ -2,6 +2,10 @@
 
 Production‑quality currency converter with a Spring Boot backend and two UI experiences.
 
+## Repository
+
+- GitHub: https://github.com/gpdhanush/loop-stream-assignment.git
+
 ## Repository Layout
 
 - `backend/` — Spring Boot (Thymeleaf UI + REST API + DB caching)
@@ -42,6 +46,20 @@ mvn spring-boot:run
 ```
 
 App: `http://localhost:8080`
+
+## Helpful Commands
+
+```bash
+# Build
+cd backend
+mvn clean package
+
+# Run tests
+mvn test
+
+# Run the app
+mvn spring-boot:run
+```
 
 ## Run Locally (Frontend Demo)
 
