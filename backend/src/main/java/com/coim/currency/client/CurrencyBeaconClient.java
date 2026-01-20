@@ -47,4 +47,26 @@ public class CurrencyBeaconClient {
         LocalDateTime fetchedAt = LocalDateTime.now();
         return new RateQuote(rate, fetchedAt);
     }
+
+    public LatestRatesQuote fetchLatest(String baseCurrency) {
+        String url = UriComponentsBuilder.fromHttpUrl(baseUrl)
+                .path("/latest")
+                .queryParam("api_key", apiKey)
+                .queryParam("base", baseCurrency)
+                .toUriString();
+
+        CurrencyBeaconResponse response = restTemplate.getForObject(url, CurrencyBeaconResponse.class);
+        if (response == null || response.getResponse() == null) {
+            throw new IllegalStateException("CurrencyBeacon response is empty");
+        }
+
+        Map<String, BigDecimal> rates = response.getResponse().getRates();
+        if (rates == null || rates.isEmpty()) {
+            throw new IllegalStateException("CurrencyBeacon response missing rates");
+        }
+
+        String base = response.getResponse().getBase();
+        LocalDateTime fetchedAt = LocalDateTime.now();
+        return new LatestRatesQuote(base, rates, fetchedAt);
+    }
 }

@@ -115,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
             loader.classList.remove("hidden");
             convertButton.setAttribute("disabled", "disabled");
             convertButton.classList.add("opacity-70", "cursor-not-allowed");
+            result.classList.add("hidden");
         } else {
             loader.classList.add("hidden");
             convertButton.removeAttribute("disabled");
@@ -146,6 +147,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
+            result.classList.add("hidden");
+            resultText.textContent = "";
+            resultNote.textContent = "";
             setLoading(true);
             const response = await fetch("/api/convert", {
                 method: "POST",
@@ -168,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const note = data.fromCache
                 ? `Rate used: cached${fetchedLabel}`
                 : `Rate used: fresh API call${fetchedLabel}`;
+
             showResult(text, note);
         } catch (error) {
             showError(error.message);
