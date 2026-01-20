@@ -166,24 +166,7 @@ createApp({
     },
     sanitizeAmountInput(value) {
       let sanitized = value || "";
-      sanitized = sanitized.replace(/[^0-9.]/g, "");
-
-      const firstDot = sanitized.indexOf(".");
-      if (firstDot !== -1) {
-        const before = sanitized.slice(0, firstDot + 1);
-        const after = sanitized.slice(firstDot + 1).replace(/\./g, "");
-        sanitized = before + after;
-      }
-
-      if (sanitized.startsWith(".")) {
-        sanitized = `0${sanitized}`;
-      }
-
-      const parts = sanitized.split(".");
-      if (parts.length === 2) {
-        parts[1] = parts[1].slice(0, 2);
-        sanitized = `${parts[0]}.${parts[1]}`;
-      }
+      sanitized = sanitized.replace(/[^0-9]/g, "");
 
       return sanitized;
     },
